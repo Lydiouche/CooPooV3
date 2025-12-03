@@ -11,14 +11,27 @@ public void jouer() {
 while(vie){
       System.out.println("\n----------------------------------------------------");
             System.out.println("Position actuelle: (X=" + ?.getX() + ", Y=" + ?.getY() + ")");
-            System.out.print("Entrez votre mouvement (A/F/C/Q) : ");
+            System.out.print("Entrez votre mouvement (A/Q) : ");
 
 if (input.equals("Q")) {
                 vie = false;
                 System.out.println("Partie terminée.");
                 break;
             }
+if (){
+    System.out.println("Le monstre est : Monstre.getNom()  ");
+    System.out.print("Entrez une action (F/C) : ");
 
+    if (input.equals("A")) {
+                ?.avancer();
+            } else if (input.equals("F")) {
+                ?.fuir();
+            } else if (input.equals("C")) {
+                ?.combattre();
+            } else {
+                System.out.println("Commande invalide. Veuillez réessayer.");
+            }
 
         }
+    }
 }
