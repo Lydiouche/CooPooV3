@@ -27,8 +27,8 @@ public class Plateau {
 
         // --- Armes ---
         entites.put(getKey(0, 1), new Epee());            // EPEE (0, -1)
-        entites.put(getKey(-1, 1), new Arc());             // ARC (-1, 1)
-        entites.put(getKey(2, -1), new Baguette());        // BAGUETTE (2, -1)
+        entites.put(getKey(-1, -1), new Arc());             // ARC (-1, 1)
+        entites.put(getKey(2, 1), new Baguette());        // BAGUETTE (2, 1)
         entites.put(getKey(0, -3), new Baton());           // BATON (0, -3) CORRIGÉ
 
         // --- Cases Spéciales ---
@@ -52,21 +52,27 @@ public class Plateau {
 
         // Toutes les coordonnées qui contenaient une entité sont sûres une fois l'entité retirée.
         // Coordonnées Sûres (Chemin blanc ou ancienne position d'entité) :
-        if ((x == 1 && y == 0) ||   // Case Sûre explicite
-                (x == 0 && y == -1) ||  // Epee / Maintenant sûre
-                (x == 2 && y == -1) ||  // Baguette / Maintenant sûre
-                (x == 1 && y == -1) ||  // Squelette / Maintenant sûre
-                (x == 0 && y == 1) ||   // Sirene / Maintenant sûre
-                (x == -1 && y == 1) ||  // Arc / Maintenant sûre
-                (x == 0 && y == 3) ||   // Baton (ancienne pos)
-                (x == 1 && y == 3) ||   // Serber / Maintenant sûre
-                (x == 0 && y == -3)     // Baton (nouvelle pos) / Maintenant sûre
+        if ((x == -2 && y == -1) ||   // Case Sûre explicite
+                (x == -1 && y == 1) ||  // Epee / Maintenant sûre
+                (x == -1 && y == 0) ||  // Baguette / Maintenant sûre
+                (x == -1 && y == -2) ||  // Squelette / Maintenant sûre
+                (x == -1 && y == -3) ||   // Sirene / Maintenant sûre
+                (x == 0 && y == 2) ||  // Arc / Maintenant sûre
+                (x == 0 && y == -2) ||   // Baton (ancienne pos)
+                (x == 0 && y == -4) ||   // Serber / Maintenant sûre
+                (x == 1 && y == 2)   ||   // Baton (nouvelle pos) / Maintenant sûre
+                (x == 1 && y == -4)||
+                (x == 2 && y == 2)||
+                (x == 2 && y == -1)||
+                (x == 2 && y == -2)||
+                (x == 2 && y == -3)||
+                (x == 3 && y == 1)
         ) {
-            return false;
+            return true;
         }
 
         // 4. Toutes les autres cases sont des Pièges (y compris les cases grises Y=-3 non répertoriées).
-        return true;
+        return false;
     }
 
     public Entite getEntite(int x, int y) {
