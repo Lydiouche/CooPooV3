@@ -1,13 +1,9 @@
-public abstract class Arme extends Entiter {
-
-    protected Coordonnees positionA; 
-
-
-    public String getNomA() {
-        return this.getNom();
+public abstract class Arme extends Entiter { 
+    public Arme(String nom, int x, int y) {
+        super(nom, x, y); 
     }
 
-    public Coordonnees getPositionA() {
-        return this.positionA;
+    public String getNomA() {
+        return super.getName(); 
     }
 }
