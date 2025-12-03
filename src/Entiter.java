@@ -12,6 +12,13 @@ public Entiter(String name){
     x = 0;
     y = 0;
 }
+
+public Entiter(String name, int x, int y){
+    this.name = name;
+    this.x = 0;
+    this.y = 0;
+}
+
 public int getX() {
     return x;
 }
