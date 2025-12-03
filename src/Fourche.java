@@ -1,6 +1,6 @@
 public class Fourche extends Arme {
 
-    public Fourche(int x, int y) {
+    public Fourche() {
         super("Fourche", 0, 0);
     }
 }
