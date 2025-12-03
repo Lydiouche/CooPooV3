@@ -1,5 +1,6 @@
 public class Dragon extends Monstre {
-    public Dragon(String nom, Class<? extends Arme> faiblesse) {
-        super(nom, faiblesse);
+
+    public Dragon() {
+        super(2, 0, "Dragon", Chevalier.class);
     }
 }

@@ -1,6 +1,6 @@
 public abstract class Arme extends Entiter { 
-    public Arme(String nom, int x, int y) {
-        super(nom, x, y); 
+    public Arme(String name, int x, int y) {
+        super(name, x, y); 
     }
 
     public String getNomA() {
