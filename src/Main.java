@@ -13,4 +13,4 @@ public class Main {
         // Lancement de la boucle de jeu en passant l'objet joueur
         vue.jouer(joueur); 
     }
-}}
+}
