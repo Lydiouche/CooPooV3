@@ -7,5 +7,3 @@ void main() {
     Paysan joueur = new Paysan(S);
 
 }
-
-}
