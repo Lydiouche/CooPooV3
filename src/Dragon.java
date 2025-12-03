@@ -5,4 +5,9 @@ public class Dragon extends Monstre {
     public Dragon() {
         super("Dragon", 2, 0);
     }
+
+    public String criDeGuerre() {
+        return "GROAAAAR ! Je vais te réduire en cendres !";
+    }
+
 }

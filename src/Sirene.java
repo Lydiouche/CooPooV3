@@ -4,4 +4,9 @@ public class Sirene extends Monstre {
     public Sirene() {
         super("Sirene", 0, -1);
     }
+
+    public String criDeGuerre() {
+        return "Écoute mon chant… et sombre dans les profondeurs.";
+    }
+
 }
