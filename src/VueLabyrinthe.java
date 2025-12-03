@@ -124,9 +124,9 @@ public class VueLabyrinthe {
         } else if (monstre instanceof Squelette) {
             faiblesseClasse = Chevalier.class;
         } else if (monstre instanceof Sirene) {
-            faiblesseClasse = Sorcier.class;
-        } else if (monstre instanceof Chien_enfer) {
             faiblesseClasse = Mage.class;
+        } else if (monstre instanceof Chien_enfer) {
+            faiblesseClasse = Sorcier.class;
         }
 
         if (faiblesseClasse != null && faiblesseClasse.isInstance(joueur)) {
