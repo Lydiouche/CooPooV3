@@ -1,10 +1,16 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
-    Paysan joueur = new Paysan("Test");
-    joueur.seDeplacer();
-
-}
+public class Main {
+    
+    public static void main(String[] args) {
+        // 1. Définition du nom du joueur (simple pour l'exemple)
+        String nomJoueur = "Héros Inconnu";
+        
+        // 2. Création du personnage de départ (Paysan)
+        Paysan joueur = new Paysan(nomJoueur);
+        
+        // 3. Création et lancement de la Vue/Logique de jeu
+        VueLabyrinthe vue = new VueLabyrinthe();
+        
+        // Lancement de la boucle de jeu en passant l'objet joueur
+        vue.jouer(joueur); 
+    }
+}}
