@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
+public class Squelette extends Monstre {
 
-public class Squelette {
+    public Squelette() {
+        super(1, 2, "Squelette", Archer.class);
+    }
 }
