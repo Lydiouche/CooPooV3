@@ -1,13 +1,13 @@
-public abstract class Monstre extends Entite{
+public abstract class Monstre extends Entiter{
 
-    protected Class<? extends Personnage> faiblesse; //classe du personnage
+    protected Class<? extends Personne> faiblesse; //classe du personnage
 
-    public Monstre(int x, int y, String name, Class<? extends Personnage> faiblesse) {
-        super(x, y, name);
+    public Monstre(String name, int x, int y, Class<? extends Personne> faiblesse) {
+        super(name, x, y);
         this.faiblesse = faiblesse;
     }
 
-    public boolean estFaibleContre(Personnage perso){
+    public boolean estFaibleContre(Personne perso){
         return faiblesse.isInstance(perso);
     }
 }
