@@ -16,9 +16,22 @@ public  abstract class Personne extends Entite {
     // 1: Gauche | 2: Droite | 3: Bas | 4: Haut
     public void seDeplacer() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print(">> Entrer votre choix (1 Gauche, 2 Droite, 3 Bas, 4 Haut : ");
-        int choix = scanner.nextInt();
-
+        int choix = 0;
+        boolean saisieValide = false;
+        do{
+            System.out.print(">> Entrer votre choix (1 Gauche, 2 Droite, 3 Bas, 4 Haut : ");
+        try {
+            choix = scanner.nextInt();
+            if (choix > 0 && choix < 5) {
+                saisieValide = true;
+            } else {
+                System.out.println("Vous avez fait une erreur de saisie : Le choix doit être entre 1 et 4.");
+            }
+        }catch(Exception e) {
+            System.out.println("Erreur");
+            scanner.next();
+            }
+        } while (!saisieValide);
         int xActuel = this.getX();
         int yActuel = this.getY();
 
