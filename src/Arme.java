@@ -1,4 +1,4 @@
-public abstract class Arme extends Entite {
+public abstract class Arme extends Entiter {
 
     protected Coordonnees positionA; 
 
