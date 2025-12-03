@@ -1,6 +1,6 @@
 public class Sirene extends Monstre {
 
-    private Sorcier faiblesse ;
+    private Mage faiblesse ;
     public Sirene() {
         super("Sirene", 0, -1);
     }

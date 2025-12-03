@@ -3,7 +3,7 @@ public class Squelette extends Monstre {
     private Archer faiblesse ;
 
     public Squelette() {
-        super("Squelette", 1, 2);
+        super("Squelette", 1, 1);
     }
 
     public String criDeGuerre() {
