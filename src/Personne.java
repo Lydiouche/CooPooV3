@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public  abstract class Personne extends Entiter {
+public  abstract class Personne extends Entite {
     private Boolean vie;
     // Constructor 1 : Création (Début du jeu)
     public Personne(String name){
