@@ -1,6 +1,7 @@
 public class Sirene extends Monstre {
 
+    private Sorcier faiblesse ;
     public Sirene() {
-        super(0, -1, "Sirene", Magicien.class);
+        super("Sirene", 0, -1);
     }
 }

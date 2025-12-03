@@ -1,6 +1,8 @@
 public class Squelette extends Monstre {
 
+    private Archer faiblesse ;
+
     public Squelette() {
-        super(1, 2, "Squelette", Archer.class);
+        super("Squelette", 1, 2);
     }
 }
