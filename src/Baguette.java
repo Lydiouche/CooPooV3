@@ -1,6 +1,6 @@
 public class Baguette extends Arme {
 
-    public Baguette(int x, int y) {
+    public Baguette() {
         super("Baguette", 2, 1);
     }
 }

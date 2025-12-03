@@ -1,6 +1,8 @@
 public class Chien_enfer extends Monstre {
 
+    private Mage faiblesse ;
+
     public Chien_enfer() {
-        super(1, -3, "Cerbère", Mage.class);
+        super("Cerbère", 1, -3);
     }
 }

@@ -1,6 +1,6 @@
 public class Epee extends Arme {
 
-    public Epee(int x, int y) {
+    public Epee() {
         super("Epée", 0, 1);
     }
 }
