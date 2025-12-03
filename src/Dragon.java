@@ -1,6 +1,6 @@
 public class Dragon extends Monstre {
 
     public Dragon() {
-        super(1, 1, "Dragon", Chevalier.class);
+        super(2, 0, "Dragon", Chevalier.class);
     }
 }
