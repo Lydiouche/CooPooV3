@@ -1,6 +1,6 @@
 public class Dragon extends Monstre {
 
-    private Chevalier faiblesse ;
+    private Archer faiblesse ;
 
     public Dragon() {
         super("Dragon", 2, 0);
