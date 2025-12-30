@@ -41,7 +41,7 @@ public  abstract class Personne extends Entite {
             xActuel = xActuel + 1;
         } else if (choix == 3) { // BAS (Y+1)
             yActuel = yActuel + 1;
-        } else if (choix == 4) { // HAUT (Y-1)
+        } else { // HAUT (Y-1)
             yActuel = yActuel - 1;
         }
         System.out.println(getName() + " se déplace vers " +

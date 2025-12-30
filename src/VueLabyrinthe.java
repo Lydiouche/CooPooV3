@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class VueLabyrinthe {
 
     private Plateau plateau;
-
+    private LabyrintheGUI gui; //Interface graphique
     private static final int START_X = 0;
     private static final int START_Y = 0;
 
@@ -11,6 +11,7 @@ public class VueLabyrinthe {
 
     public void jouer(Personne joueur) {
         this.plateau = new Plateau();
+        this.gui = new LabyrintheGUI(plateau, joueur);
         String input = "";
 
         joueur.setX(START_X);
@@ -25,6 +26,7 @@ public class VueLabyrinthe {
         System.out.println("====================================================");
 
         while(joueur.getVie()){
+            gui.actualiser();
             System.out.println("\n----------------------------------------------------");
             System.out.println("Position: (X=" + joueur.getX() + ", Y=" + joueur.getY() + ")");
             System.out.println("Classe: " + joueur.getClass().getSimpleName() + " (Nom: " + joueur.getName() + ")");
@@ -60,11 +62,13 @@ public class VueLabyrinthe {
                 } else if (input.equals("A")) {
                     // L'objet joueur est réassigné au résultat du déplacement (gère le changement de classe)
                     joueur = gererDeplacement(joueur);
+                    gui.actualiser();
                 } else {
                     System.out.println("Commande principale invalide.");
                 }
             }
         }
+        gui.dispose();
         scanner.close();
     }
 
@@ -201,7 +205,9 @@ public class VueLabyrinthe {
                 nouveauJoueur.setX(joueur.getX());
                 nouveauJoueur.setY(joueur.getY());
                 nouveauJoueur.setVie(joueur.getVie());
-
+                if (this.gui != null) {
+                    this.gui.setJoueur(nouveauJoueur);
+                }
                 return nouveauJoueur;
             }
             plateau.removeEntite(entite.getX(), entite.getY());
