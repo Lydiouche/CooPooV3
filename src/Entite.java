@@ -1,7 +1,7 @@
 public abstract class Entite{
-    private int x ;
-    private int y ;
-    private String name ;
+    protected int x ;
+    protected int y ;
+    protected String name ;
 
     public Entite(){
         x = 0;
