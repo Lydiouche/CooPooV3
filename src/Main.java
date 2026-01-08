@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        String nomJoueur = "Héros Inconnu";
+        String nomJoueur = "Clément";
 
         Paysan joueur = new Paysan(nomJoueur);
 
