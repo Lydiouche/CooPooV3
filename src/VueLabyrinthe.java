@@ -19,9 +19,26 @@ public class VueLabyrinthe {
         joueur.setVie(true);
 
         System.out.println("====================================================");
+        System.out.println("La Légende de Clément et la Tache de Café\n" +
+                "Le Héros : \n" +
+                "Clément, modeste paysan du Royaume de KévinLand et éleveur de panais de père en fils.\n " +
+                "Un jour, il choisit de prendre sa destinée en main !!!!!\n" +
+                "L'Histoire :\n" +
+                "Clément n'a jamais voulu être un héros. Son ambition se limitait à avoir les plus beaux légumes du royaume. \n" +
+                "Mais hier soir, en courant dans les couloirs de la taverne du B2, un croche pied de Samuel le fait tomber dans le bureau d’Annie La Grande. \n" +
+                "Nez à nez avec les copies d’examen, il découvre un vieux parchemin qui servait de cale table. \n" +
+                "C'était une carte au trésor légendaire ! \n" +
+                "Enfin... c'est ce qu'il pense. Le problème, c'est que quelqu'un a renversé une chope de café et mangé un pain d’épices dessus il y a 30 ans.\n" +
+                "La carte du labyrinthe est totalement illisible, c'est une bouillie d'encre. \n" +
+                "MAIS, par miracle, au dos du parchemin, les coordonnées exactes du trésor sont écrites proprement : X: 3 | Y: 0.\n" +
+                "Armé de sa seule fourche (aussi efficace pour le foin que pour chatouiller un dragon) et de son sens de l'orientation approximatif, Clément entre dans le donjon.\n" +
+                "Il sait où est la sortie, mais il ignore totalement quels monstres, pièges et portes magiques se dressent entre lui et la richesse.\n");
+        System.out.println("====================================================");
+
+        System.out.println("====================================================");
         System.out.println("           Bienvenue dans le Labyrinthe !           ");
         System.out.println("Objectif : Atteindre le TRESOR (3, 0). Attention aux PIÈGES et aux monstres.");
-        System.out.println("Commandes de déplacement: 1 (Gauche/X-1), 2 (Droite/X+1), 3 (Bas/Y-1), 4 (Haut/Y+1).");
+        System.out.println("Commandes de déplacement: 1 (Gauche), 2 (Droite), 3 (Bas), 4 (Haut).");
         System.out.println("Actions: A (Avancer), F (fuir), C (combat), Q (Quitter).");
         System.out.println("====================================================");
 
