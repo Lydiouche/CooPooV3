@@ -8,7 +8,6 @@ import java.util.Scanner;
 public  abstract class Personne extends Entite {
     private Boolean vie;
 
-
 /// Constructeur principal du Personnage.
     ///
     /// @param name Le nom du personnage (ex: "Gandalf")
