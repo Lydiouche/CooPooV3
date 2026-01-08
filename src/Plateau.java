@@ -5,10 +5,9 @@ public class Plateau {
 
     private final Map<String, Entite> entites;
 
-    // NOUVELLES LIMITES: Y s'étend à -3
     private static final int MIN_X = -2;
     private static final int MAX_X = 3;
-    private static final int MIN_Y = -3; // CORRIGÉ
+    private static final int MIN_Y = -3; 
     private static final int MAX_Y = 4;
     private static final int START_X = 0;
     private static final int START_Y = 0;
