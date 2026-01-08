@@ -13,11 +13,10 @@ public abstract class Entite{
         y = 0;
     }
 
-    // CORRECTION du constructeur : les coordonnées sont assignées correctement
     public Entite(String name, int x, int y){
         this.name = name;
-        this.x = x; // CORRIGÉ
-        this.y = y; // CORRIGÉ
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -30,7 +29,6 @@ public abstract class Entite{
         return name;
     }
 
-    // AJOUTS NÉCESSAIRES : Les setters pour la position
     public void setX(int x) {
         this.x = x;
     }
