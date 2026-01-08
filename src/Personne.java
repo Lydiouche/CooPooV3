@@ -5,7 +5,7 @@ import java.util.Scanner;
 *
 * @author Madjeneba DRAME, Cléo THURY, Lydia LEFEBVRE
 * @version 1.0
- * */
+*/
 
 public  abstract class Personne extends Entite {
     private Boolean vie;
