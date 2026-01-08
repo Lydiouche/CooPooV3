@@ -34,7 +34,7 @@ public class VueLabyrinthe {
             Monstre monstreSurCase = getMonstreSurCase(joueur.getX(), joueur.getY());
 
             if (monstreSurCase != null) {
-                System.out.println("🚨 Le monstre est : " + monstreSurCase.getName() + " ! " + monstreSurCase.criDeGuerre());
+                System.out.println("Le monstre est : " + monstreSurCase.getName() + " ! " + monstreSurCase.criDeGuerre());
                 System.out.println("Que voulez vous faire F : Fuire , C : Combattre , Q : Quitter");
                 System.out.print("Entrez une action (F/C/Q) : ");
                 input = scanner.nextLine().trim().toUpperCase();
@@ -106,7 +106,7 @@ public class VueLabyrinthe {
         if (entiteSurCase != null) {
             joueur = gererInteraction(joueur, entiteSurCase);
         } else if (plateau.estPiege(nextX, nextY)) {
-            System.out.println("💀 Vous êtes tombé sur un Piège ou sorti du labyrinthe ! GAME OVER !");
+            System.out.println("Vous êtes tombé sur un Piège ou sorti du labyrinthe ! GAME OVER !");
             joueur.setX(START_X);
             joueur.setY(START_Y);
             System.out.println("Vous recommencez au point de départ (" + START_X + ", " + START_Y + ").");
@@ -132,22 +132,22 @@ public class VueLabyrinthe {
 
         if (faiblesseClasse != null && faiblesseClasse.isInstance(joueur)) {
             joueur.attaquer();
-            System.out.println("⚔️ Attaque Super Efficace ! Votre classe (" + joueur.getClass().getSimpleName() + ") est la faiblesse de ce monstre.");
+            System.out.println("Attaque Super Efficace ! Votre classe (" + joueur.getClass().getSimpleName() + ") est la faiblesse de ce monstre.");
             System.out.println(monstre.getName() + " a été vaincu et vous gagnez la case !");
 
             plateau.removeEntite(joueur.getX(), joueur.getY());
 
         } else {
-            System.out.println("❌ Votre classe (" + joueur.getClass().getSimpleName() + ") n'est pas la faiblesse du " + monstre.getName() + " !");
+            System.out.println("Votre classe (" + joueur.getClass().getSimpleName() + ") n'est pas la faiblesse du " + monstre.getName() + " !");
             System.out.println(monstre.getName() + " vous écrase !");
 
             joueur.setVie(false);
-            System.out.println("💀 La partie est terminée. Vous n'avez pas survécu à l'affrontement !");
+            System.out.println("La partie est terminée. Vous n'avez pas survécu à l'affrontement !");
         }
     }
 
     private void gererFuir(Personne joueur) {
-        System.out.println("🏃 Vous fuyez le combat ! Vous êtes renvoyé à la case de départ.");
+        System.out.println("Vous fuyez le combat ! Vous êtes renvoyé à la case de départ.");
         joueur.setX(START_X);
         joueur.setY(START_Y);
     }
@@ -164,7 +164,7 @@ public class VueLabyrinthe {
 
         if (entite instanceof Arme) {
             Arme arme = (Arme) entite;
-            System.out.println("🎁 Vous trouvez l'arme : " + arme.getNomA() + ".");
+            System.out.println("Vous trouvez l'arme : " + arme.getNomA() + ".");
 
             Class<?> nouvelleClasse = null;
 
@@ -205,7 +205,7 @@ public class VueLabyrinthe {
             plateau.removeEntite(entite.getX(), entite.getY());
 
         } else if (entite.getName().equals("Tresor")) {
-            System.out.println("🏆 Vous avez trouvé le Trésor à (3, 0) ! Vous avez gagné !");
+            System.out.println("Vous avez trouvé le Trésor à (3, 0) ! Vous avez gagné !");
             joueur.setVie(false);
         }
 
