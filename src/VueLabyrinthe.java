@@ -195,7 +195,7 @@ public class VueLabyrinthe {
                 if (nouvelleClasse == Chevalier.class) {
                     nouveauJoueur = new Chevalier(joueur.getName());
                 } else if (nouvelleClasse == Sorcier.class) {
-                    nouveauJoueur = new Sorcier(joueur.getName(), 0, 0); // Utilise un constructeur simple (0,0) puis setX/Y
+                    nouveauJoueur = new Sorcier(joueur.getName()); // Utilise un constructeur simple (0,0) puis setX/Y
                 } else if (nouvelleClasse == Archer.class) {
                     nouveauJoueur = new Archer(joueur.getName());
                 } else { // Mage (si Baton)
