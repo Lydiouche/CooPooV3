@@ -19,7 +19,6 @@ public class LabyrintheTest {
     @Test
     public void testLimitesCarte() {
         Labyrinthe laby = new Labyrinthe();
-        
         Case caseInconnue = laby.getCase(10, 10);
         assertNull(caseInconnue, "Une case hors carte doit être null");
     }
