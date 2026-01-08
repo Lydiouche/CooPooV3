@@ -18,48 +18,39 @@ public class Plateau {
     }
 
     private void initialiserEntites() {
-        // --- Monstres ---
-        entites.put(getKey(1, 1), new Squelette());       // SQUELETTE (1, 1)
-        entites.put(getKey(0, -1), new Sirene());           // SIRENE (0, -1)
-        entites.put(getKey(2, 0), new Dragon());           // DRAGON (2, 0)
-        entites.put(getKey(1, -3), new Chien_enfer());      // SERBER (1, -3)
+        entites.put(getKey(1, 1), new Squelette());
+        entites.put(getKey(0, -1), new Sirene());
+        entites.put(getKey(2, 0), new Dragon());
+        entites.put(getKey(1, -3), new Chien_enfer());
 
-        // --- Armes ---
-        entites.put(getKey(0, 1), new Epee());            // EPEE (0, -1)
-        entites.put(getKey(-1, -1), new Arc());             // ARC (-1, 1)
-        entites.put(getKey(2, 1), new Baguette());        // BAGUETTE (2, 1)
-        entites.put(getKey(0, -3), new Baton());           // BATON (0, -3) CORRIGÉ
+        entites.put(getKey(0, 1), new Epee());
+        entites.put(getKey(-1, -1), new Arc());
+        entites.put(getKey(2, 1), new Baguette());
+        entites.put(getKey(0, -3), new Baton());
 
-        // --- Cases Spéciales ---
-        entites.put(getKey(3, 0), new Entite("Tresor", 3, 0) {}); // TRESOR (3, 0)
+        entites.put(getKey(3, 0), new Entite("Tresor", 3, 0) {});
     }
 
     /**
      * Vérifie si une case est un Piège (inclut les bords et les zones grises).
      */
     public boolean estPiege(int x, int y) {
-        // 1. Piège de bordure
         if (x < MIN_X || x > MAX_X || y < MIN_Y || y > MAX_Y) {
             return true;
         }
 
-        // 2. Case de départ et Entités ne sont pas des pièges
         if (x == START_X && y == START_Y) return false;
         if (getEntite(x, y) != null) return false;
 
-        // 3. Identification des CASES SURES VIDES (Chemins blancs ou anciennes entités)
-
-        // Toutes les coordonnées qui contenaient une entité sont sûres une fois l'entité retirée.
-        // Coordonnées Sûres (Chemin blanc ou ancienne position d'entité) :
-        if ((x == -2 && y == -1) ||   // Case Sûre explicite
-                (x == -1 && y == 1) ||  // Epee / Maintenant sûre
-                (x == -1 && y == 0) ||  // Baguette / Maintenant sûre
-                (x == -1 && y == -2) ||  // Squelette / Maintenant sûre
-                (x == -1 && y == -3) ||   // Sirene / Maintenant sûre
-                (x == 0 && y == 2) ||  // Arc / Maintenant sûre
-                (x == 0 && y == -2) ||   // Baton (ancienne pos)
-                (x == 0 && y == -4) ||   // Serber / Maintenant sûre
-                (x == 1 && y == 2)   ||   // Baton (nouvelle pos) / Maintenant sûre
+        if ((x == -2 && y == -1) ||
+                (x == -1 && y == 1) ||
+                (x == -1 && y == 0) ||
+                (x == -1 && y == -2) ||
+                (x == -1 && y == -3) ||
+                (x == 0 && y == 2) ||
+                (x == 0 && y == -2) ||
+                (x == 0 && y == -4) ||
+                (x == 1 && y == 2)   ||
                 (x == 1 && y == -4)||
                 (x == 2 && y == 2)||
                 (x == 2 && y == -1)||
@@ -70,7 +61,6 @@ public class Plateau {
             return true;
         }
 
-        // 4. Toutes les autres cases sont des Pièges (y compris les cases grises Y=-3 non répertoriées).
         return false;
     }
 

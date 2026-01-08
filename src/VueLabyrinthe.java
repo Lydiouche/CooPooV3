@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class VueLabyrinthe {
 
     private Plateau plateau;
-    private LabyrintheGUI gui; //Interface graphique
+    private LabyrintheGUI gui;
     private static final int START_X = 0;
     private static final int START_Y = 0;
 
@@ -51,7 +51,6 @@ public class VueLabyrinthe {
                     System.out.println("Commande invalide. Veuillez réessayer.");
                 }
             } else {
-                // Phase de déplacement
                 System.out.print("Entrez votre action (A/Q) : ");
                 input = scanner.nextLine().trim().toUpperCase();
 
@@ -60,7 +59,6 @@ public class VueLabyrinthe {
                     System.out.println("Partie terminée.");
                     break;
                 } else if (input.equals("A")) {
-                    // L'objet joueur est réassigné au résultat du déplacement (gère le changement de classe)
                     joueur = gererDeplacement(joueur);
                     gui.actualiser();
                 } else {
@@ -122,7 +120,6 @@ public class VueLabyrinthe {
     private void gererCombat(Personne joueur, Monstre monstre) {
         Class<?> faiblesseClasse = null;
 
-        // La logique des faiblesses est correcte selon les classes fournies
         if (monstre instanceof Dragon) {
             faiblesseClasse = Archer.class;
         } else if (monstre instanceof Squelette) {
@@ -138,7 +135,6 @@ public class VueLabyrinthe {
             System.out.println("⚔️ Attaque Super Efficace ! Votre classe (" + joueur.getClass().getSimpleName() + ") est la faiblesse de ce monstre.");
             System.out.println(monstre.getName() + " a été vaincu et vous gagnez la case !");
 
-            // CORRECTION: Suppression de l'entité en utilisant la position du joueur (la clé correcte)
             plateau.removeEntite(joueur.getX(), joueur.getY());
 
         } else {
@@ -164,7 +160,6 @@ public class VueLabyrinthe {
         return null;
     }
 
-    // MÉTHODE MISE À JOUR : Gère le remplacement d'objet pour toutes les armes
     private Personne gererInteraction(Personne joueur, Entite entite) {
 
         if (entite instanceof Arme) {
@@ -173,7 +168,6 @@ public class VueLabyrinthe {
 
             Class<?> nouvelleClasse = null;
 
-            // Déterminer la nouvelle classe
             if (arme instanceof Epee) {
                 nouvelleClasse = Chevalier.class;
             } else if (arme instanceof Baguette) {
@@ -188,17 +182,15 @@ public class VueLabyrinthe {
                 System.out.println("Vous ramassez " + arme.getNomA() + " ! Vous devenez un " + nouvelleClasse.getSimpleName() + " !");
                 plateau.removeEntite(entite.getX(), entite.getY());
 
-                // CRÉATION ET TRANSFERT DE L'ÉTAT DU NOUVEAU JOUEUR
                 Personne nouveauJoueur;
 
-                // Note : On utilise le constructeur (String nom) et on met à jour la position
                 if (nouvelleClasse == Chevalier.class) {
                     nouveauJoueur = new Chevalier(joueur.getName());
                 } else if (nouvelleClasse == Sorcier.class) {
-                    nouveauJoueur = new Sorcier(joueur.getName()); // Utilise un constructeur simple (0,0) puis setX/Y
+                    nouveauJoueur = new Sorcier(joueur.getName());
                 } else if (nouvelleClasse == Archer.class) {
                     nouveauJoueur = new Archer(joueur.getName());
-                } else { // Mage (si Baton)
+                } else {
                     nouveauJoueur = new Mage(joueur.getName());
                 }
 
