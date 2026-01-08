@@ -11,9 +11,10 @@ public  abstract class Personne extends Entite {
     private Boolean vie;
 
 
-/// Constructeur principal du Personnage.
-    ///
-    /// @param name Le nom du personnage (ex: "Gandalf")
+    /** Constructeur principal du Personnage.
+        *
+        * @param name Le nom du personnage (ex: "Gandalf")
+    */
     public Personne(String name){
         super(name);}
 
@@ -25,8 +26,9 @@ public  abstract class Personne extends Entite {
     }
 
 
-    /// Permet au personnage de se déplacer via une saisie clavier.
-    /// Modifie les coordonnées X et Y de l'Entité.
+    /** Permet au personnage de se déplacer via une saisie clavier.
+    * Modifie les coordonnées X et Y de l'Entité.
+    */
     public void seDeplacer() {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -66,7 +68,8 @@ public  abstract class Personne extends Entite {
     }
 
 
-    /// Méthode abstraite d'attaque.
-    /// Chaque classe fille (Sorcier, Chevalier) doit définir ses propres dégâts.
+    /** Méthode abstraite d'attaque.
+    * Chaque classe fille (Sorcier, Chevalier) doit définir ses propres dégâts.
+    */
     public abstract void attaquer();
 }
