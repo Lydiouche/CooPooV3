@@ -10,9 +10,9 @@ public class EpeeTest {
 
         Epee monEpee = new Epee();
 
-        assertEquals("Epee", monEpee.getNomA(), "Le nom de l'arme doit être Epee");
+        assertEquals("Epee", monEpee.getNomA(), "Le nom de l'arme doit etre Epee");
 
-        assertEquals(0, monEpee.getX(), "L'épée doit être en X=0");
-        assertEquals(-2, monEpee.getY(), "L'épée doit être en Y=-2");
+        assertEquals(0, monEpee.getX(), "L'épée doit etre en X=0");
+        assertEquals(-2, monEpee.getY(), "L'épée doit etre en Y=-2");
     }
 }

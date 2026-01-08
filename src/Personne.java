@@ -44,6 +44,10 @@ public  abstract class Personne extends Entite {
         } else { // HAUT (Y-1)
             yActuel = yActuel - 1;
         }
+
+        this.setX(xActuel);
+        this.setY(yActuel);
+
         System.out.println(getName() + " se déplace vers " +
                 " la case [" + xActuel + "," + yActuel + "]");
     }
