@@ -1,6 +1,7 @@
 public class Sorcier extends Personne {
-    public Sorcier(String nom, int x, int y) {
-        super(nom, x, y);
+
+    public Sorcier(String nom) {
+        super(nom);
     }
     @Override
     public void attaquer() {
