@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
-/// Classe abstraite représentant tous les personnages du jeu (Joueur).
-/// Elle gère la vie et les déplacements.
-///
-/// @author Madjeneba DRAME, Cléo THURY, Lydia LEFEBVRE
-/// @version 1.0
+/** Classe abstraite représentant tous les personnages du jeu (Joueur).
+* Elle gère la vie et les déplacements.
+*
+* @author Madjeneba DRAME, Cléo THURY, Lydia LEFEBVRE
+* @version 1.0 */
+
 public  abstract class Personne extends Entite {
-    /// Booléen à True pour montrer que le personnage est vivant
+    /** Booléen à True pour montrer que le personnage est vivant */
     private Boolean vie;
 
     /** Constructeur principal du Personnage.
@@ -24,8 +25,8 @@ public  abstract class Personne extends Entite {
     }
 
 
-    /// Permet au personnage de se déplacer via une saisie clavier.
-    /// Modifie les coordonnées X et Y de l'Entité.
+    /** Permet au personnage de se déplacer via une saisie clavier.
+    * Modifie les coordonnées X et Y de l'Entité. */
     public void seDeplacer() {
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
@@ -65,7 +66,7 @@ public  abstract class Personne extends Entite {
     }
 
 
-    /// Méthode abstraite d'attaque.
-    /// Chaque classe fille (Sorcier, Chevalier) doit définir ses propres dégâts.
+    /** Méthode abstraite d'attaque.
+    * Chaque classe fille (Sorcier, Chevalier) doit définir ses propres dégâts. */
     public abstract void attaquer();
 }
