@@ -43,13 +43,15 @@ public class VueLabyrinthe {
         System.out.println("Commandes de déplacement: 1 (Gauche), 2 (Droite), 3 (Bas), 4 (Haut).");
         System.out.println("Actions globales : A (Avancer), F (fuir), C (combat), Q (Quitter).");
         System.out.println("====================================================");
-        joueur.setFaim(100);
+        joueur.setFaim(120);
+        joueur.setInventaire(Personne.Objets.Vide);
         while(joueur.getVie() && joueur.getFaim() > 0) {
             gui.actualiser();
             System.out.println("\n----------------------------------------------------");
             System.out.println("Position: (X=" + joueur.getX() + ", Y=" + joueur.getY() + ")");
             System.out.println("Classe: " + joueur.getClass().getSimpleName() + " (Nom: " + joueur.getName() + ")");
             System.out.println("Faim: " + joueur.getFaim());
+            System.out.println("Inventaire: " + (joueur.getInventaire()));
             Monstre monstreSurCase = getMonstreSurCase(joueur.getX(), joueur.getY());
 
             if (monstreSurCase != null) {
@@ -147,8 +149,25 @@ public class VueLabyrinthe {
             joueur.attaquer();
             System.out.println("Attaque Super Efficace ! Votre classe (" + joueur.getClass().getSimpleName() + ") est la faiblesse de ce monstre.");
             System.out.println(monstre.getName() + " a été vaincu et vous gagnez la case !");
-            System.out.println("Vous trouvez derrière vous : .");
 
+                if (monstre.getName().equals("Dragon")) {
+                    System.out.println("En battant le Dragon, vous trouvez derrière lui : Le Casque de Moto de Meneveaux.");
+                    joueur.setInventaire(Personne.Objets.LeCasqueDeMotoDeMeneveaux);
+                } else if (monstre.getName().equals("Squelette")) {
+                    System.out.println("En battant le Squelette, vous trouvez derrière lui : La Tasse de Café d'Annie.");
+                    joueur.setInventaire(Personne.Objets.LaTasseDeCafeDAnnie);
+                } else if (monstre.getName().equals("Sirene")) {
+                    System.out.println("En battant la Sirène, vous trouvez derrière elle : La Clé USB de Skapin.");
+                    joueur.setInventaire(Personne.Objets.LaCléUSBDeSkapin);
+                } else {
+                    System.out.println("En battant le Chien de l'Enfer, vous trouvez derrière lui : Le KitKat de Fousse.");
+                    joueur.setInventaire(Personne.Objets.LeKitKatDeFousse);
+                    System.out.println("Vous vous sentez plus affamé après ce combat ! Vous mangez le KitKat de Fousse.");
+                    System.out.println("Votre faim augmente de 80 points.");
+                    joueur.setFaim(joueur.getFaim() + 80);
+                    joueur.setInventaire(Personne.Objets.Vide);
+                }
+                
             plateau.removeEntite(joueur.getX(), joueur.getY());
 
         } else {
@@ -219,6 +238,7 @@ public class VueLabyrinthe {
                 nouveauJoueur.setY(joueur.getY());
                 nouveauJoueur.setVie(joueur.getVie());
                 nouveauJoueur.setFaim(joueur.getFaim());
+                nouveauJoueur.setInventaire(joueur.getInventaire());
                 if (this.gui != null) {
                     this.gui.setJoueur(nouveauJoueur);
                 }
@@ -226,7 +246,8 @@ public class VueLabyrinthe {
             }
 
         } else if (entite.getName().equals("Tresor")) {
-            System.out.println("Vous avez trouvé le Trésor à (3, 0) ! Vous avez gagné !");
+            System.out.println("Vous avez trouvé le Trésor ! Vous avez trouvé les sujets d'examen de COOPOO 2025 !");
+            System.out.println("Félicitations, vous avez gagné la partie (et votre année!");
             joueur.setVie(false);
         }
 

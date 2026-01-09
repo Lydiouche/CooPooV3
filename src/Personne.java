@@ -10,12 +10,16 @@ public  abstract class Personne extends Entite {
     /** Booléen à True pour montrer que le personnage est vivant */
     private Boolean vie;
     private int faim;
-    private String inventaire;
-
-    public enum Objets {
-        LaTasseDeCaféDAnnie,
+       public enum Objets {
+        Vide,
+        LaTasseDeCafeDAnnie,
+        LeCasqueDeMotoDeMeneveaux,
+        LeKitKatDeFousse,
+        LaCléUSBDeSkapin
         ;
     }
+    private Objets inventaire;
+
     /** Constructeur principal du Personnage.
     *
     * @param name Le nom du personnage (ex: "Gandalf")
@@ -35,10 +39,10 @@ public  abstract class Personne extends Entite {
     public void setFaim(int faim) {
         this.faim = faim;
     }
-    public String getInventaire() {
+    public Objets getInventaire() {
         return inventaire;
     }
-    public void setInventaire(String inventaire) {
+    public void setInventaire(Objets inventaire) {
         this.inventaire = inventaire;
     }
 
