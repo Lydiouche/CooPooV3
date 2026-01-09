@@ -20,12 +20,13 @@ import java.util.Optional;
 
 public class LabyrintheApp extends Application {
 
-    // --- CONSTANTES ---
+
     private static final int TAILLE_CASE = 60;
     private static final int MIN_X = -2;
     private static final int MAX_X = 3;
     private static final int MIN_Y = -3;
     private static final int MAX_Y = 4;
+
 
     private Plateau plateau;
     private Personne joueur;
@@ -42,28 +43,34 @@ public class LabyrintheApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+ 
         String nomJoueur = demanderNomUtilisateur();
         if (nomJoueur == null) {
             Platform.exit();
             return;
         }
 
+    
         plateau = new Plateau();
         joueur = new Paysan(nomJoueur);
         joueur.setX(0);
         joueur.setY(0);
         joueur.setVie(true);
         
+
         try {
-            joueur.setFaim(220);
-        } catch (Exception e) { /* Ignoré si pas encore codé */ }
+            joueur.setFaim(120);
+            joueur.setInventaire(Personne.Objets.Vide);
+        } catch (Exception e) {
+            System.err.println("Erreur: Vérifiez que Personne.java contient bien faim et inventaire.");
+        }
 
 
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
         root.setStyle("-fx-background-color: #2c3e50;");
 
-
+        // --- GRILLE ---
         grille = new GridPane();
         grille.setAlignment(Pos.CENTER);
         grille.setHgap(2);
@@ -91,7 +98,7 @@ public class LabyrintheApp extends Application {
         VBox bottomBox = new VBox(10);
         statusLabel = new Label();
         statusLabel.setTextFill(Color.WHITE);
-        statusLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        statusLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13)); // Police légèrement réduite pour tout afficher
 
         zoneTexte = new TextArea();
         zoneTexte.setEditable(false);
@@ -100,13 +107,13 @@ public class LabyrintheApp extends Application {
         zoneTexte.setWrapText(true);
         zoneTexte.setStyle("-fx-control-inner-background: #34495e; -fx-text-fill: white; -fx-font-family: 'Consolas', monospace;");
 
-
         afficherIntro(nomJoueur);
 
         bottomBox.getChildren().addAll(statusLabel, zoneTexte);
         root.setBottom(bottomBox);
 
-        Scene scene = new Scene(root, 700, 800);
+
+        Scene scene = new Scene(root, 700, 850);
         scene.setOnKeyPressed(event -> {
             if (joueur.getVie()) {
                 gererMouvement(event.getCode());
@@ -172,7 +179,6 @@ public class LabyrintheApp extends Application {
             Arme a = (Arme) entite;
             afficherMessage("✨ Arme trouvée : " + a.getNomA());
             
-            // On lance l'énigme graphique adaptée à ton code
             boolean reussite = poserEnigmeGraphique(a);
             
             if (reussite) {
@@ -181,19 +187,19 @@ public class LabyrintheApp extends Application {
             } else {
                 afficherMessage("🔒 Raté ! L'arme reste au sol.");
             }
+            
         } else if (entite.getName().equals("Tresor")) {
-            afficherMessage("💎 VICTOIRE ! Trésor trouvé !");
+            afficherMessage("💎 VICTOIRE ! Vous avez trouvé les sujets d'examen de COOPOO 2025 !");
+            afficherMessage("Félicitations, vous avez gagné la partie (et votre année !)");
             joueur.setVie(false);
-            statusLabel.setText("VICTOIRE !!!");
+            statusLabel.setText("VICTOIRE - SUJETS TROUVÉS !!!");
         }
     }
-
 
     private boolean poserEnigmeGraphique(Arme a) {
         String question = "";
         List<String> choix = null;
         String bonneReponse = "";
-
 
         if (a instanceof Epee) {
             question = "Quelle épée légendaire a été reforgée pour Aragorn (Andúril) ?";
@@ -232,6 +238,7 @@ public class LabyrintheApp extends Application {
 
     private void gererCombatAutomatique(Monstre m) {
         boolean victoire = false;
+
         if (m instanceof Dragon && joueur instanceof Archer) victoire = true;
         else if (m instanceof Squelette && joueur instanceof Chevalier) victoire = true;
         else if (m instanceof Sirene && joueur instanceof Mage) victoire = true;
@@ -239,6 +246,24 @@ public class LabyrintheApp extends Application {
 
         if (victoire) {
             afficherMessage("✅ COUP CRITIQUE ! " + m.getName() + " vaincu.");
+            
+            // --- GESTION DU LOOT (INVENTAIRE) ---
+            if (m instanceof Dragon) {
+                afficherMessage("🎁 Loot : Le Casque de Moto de Meneveaux !");
+                joueur.setInventaire(Personne.Objets.LeCasqueDeMotoDeMeneveaux);
+            } else if (m instanceof Squelette) {
+                afficherMessage("🎁 Loot : La Tasse de Café d'Annie !");
+                joueur.setInventaire(Personne.Objets.LaTasseDeCafeDAnnie);
+            } else if (m instanceof Sirene) {
+                afficherMessage("🎁 Loot : La Clé USB de Skapin !");
+                joueur.setInventaire(Personne.Objets.LaCléUSBDeSkapin);
+            } else if (m instanceof Chien_enfer) { 
+                afficherMessage("🎁 Loot : Le KitKat de Fousse !");
+                afficherMessage("🍫 Miam ! Vous le mangez direct (+80 Faim).");
+                joueur.setFaim(joueur.getFaim() + 80);
+                joueur.setInventaire(Personne.Objets.Vide); 
+            }
+
             plateau.removeEntite(joueur.getX(), joueur.getY());
         } else {
             afficherMessage("💀 ECHEC ! Vous fuyez !");
@@ -253,6 +278,7 @@ public class LabyrintheApp extends Application {
         int y = joueur.getY();
         boolean v = joueur.getVie();
         int f = joueur.getFaim();
+        Personne.Objets inv = joueur.getInventaire();
 
         if (a instanceof Epee) joueur = new Chevalier(oldName);
         else if (a instanceof Baguette) joueur = new Sorcier(oldName);
@@ -263,13 +289,16 @@ public class LabyrintheApp extends Application {
         joueur.setY(y);
         joueur.setVie(v);
         joueur.setFaim(f);
+        joueur.setInventaire(inv); 
+        
         afficherMessage("🔄 MÉTAMORPHOSE ! Vous êtes maintenant un " + joueur.getClass().getSimpleName());
     }
 
     private void rafraichirVue() {
         String vieStr = joueur.getVie() ? "VIVANT" : "MORT";
-        statusLabel.setText(String.format("Héros: %s | Classe: %s | Faim: %d | État: %s", 
-            joueur.getName(), joueur.getClass().getSimpleName(), joueur.getFaim(), vieStr));
+        // Mise à jour du StatusLabel avec l'Inventaire
+        statusLabel.setText(String.format("Héros: %s | Classe: %s | Faim: %d | Inv: %s", 
+            joueur.getName(), joueur.getClass().getSimpleName(), joueur.getFaim(), joueur.getInventaire()));
 
         for (int y = MAX_Y; y >= MIN_Y; y--) {
             for (int x = MIN_X; x <= MAX_X; x++) {
@@ -277,6 +306,7 @@ public class LabyrintheApp extends Application {
                 int row = MAX_Y - y;
                 StackPane pane = grilleGraphique[col][row];
                 pane.getChildren().clear();
+                
                 if (plateau.estPiege(x, y)) pane.setStyle("-fx-background-color: #7f8c8d; -fx-background-radius: 5;");
                 else pane.setStyle("-fx-background-color: #ecf0f1; -fx-background-radius: 5;");
 
@@ -288,7 +318,7 @@ public class LabyrintheApp extends Application {
                 }
             }
         }
-        // Joueur
+        
         int pCol = joueur.getX() - MIN_X;
         int pRow = MAX_Y - joueur.getY();
         if (pCol >= 0 && pCol < grilleGraphique.length && pRow >= 0 && pRow < grilleGraphique[0].length) {
@@ -326,7 +356,6 @@ public class LabyrintheApp extends Application {
         }
     }
 
-
     private void afficherIntro(String nom) {
         afficherMessage("====================================================");
         afficherMessage("La Légende de " + nom +" et la Tache de Café\n" +
@@ -346,7 +375,7 @@ public class LabyrintheApp extends Application {
         afficherMessage("====================================================");
         afficherMessage("           Bienvenue dans le Labyrinthe !           ");
         afficherMessage("Objectif : Atteindre le TRESOR (3, 0). Attention aux pièges et aux monstres.");
-        afficherMessage("Faites attention à ne pas rester trop longtemps dans le labyrinthe !");
+        afficherMessage("Faites attention à ne pas rester trop longtemps dans le labyrinthe ! Vous risquez d'avoir faim...");
         afficherMessage("Vous commencez en (0, 0). Bonne chance !");
         afficherMessage("====================================================");
     }
