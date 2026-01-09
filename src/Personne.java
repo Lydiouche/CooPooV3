@@ -6,9 +6,10 @@ import java.util.Scanner;
 /// @author Madjeneba DRAME, Cléo THURY, Lydia LEFEBVRE
 /// @version 1.0
 public  abstract class Personne extends Entite {
+    /// Booléen à True pour montrer que le personnage est vivant
     private Boolean vie;
 
-/// Constructeur principal du Personnage.
+    /// Constructeur principal du Personnage.
     ///
     /// @param name Le nom du personnage (ex: "Gandalf")
     public Personne(String name){
