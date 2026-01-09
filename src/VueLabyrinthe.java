@@ -179,6 +179,13 @@ public class VueLabyrinthe {
             Arme arme = (Arme) entite;
             System.out.println("Vous trouvez l'arme : " + arme.getNomA() + ".");
 
+            // Lancer l'énigme de l'arme et ne retirer/convertir que si réussite
+            arme.enigmeArme();
+            if (!arme.isRecuperee()) {
+                System.out.println("Vous n'avez pas réussi l'énigme. L'arme reste sur la case.");
+                return joueur;
+            }
+
             Class<?> nouvelleClasse = null;
 
             if (arme instanceof Epee) {
@@ -216,7 +223,6 @@ public class VueLabyrinthe {
                 }
                 return nouveauJoueur;
             }
-            plateau.removeEntite(entite.getX(), entite.getY());
 
         } else if (entite.getName().equals("Tresor")) {
             System.out.println("Vous avez trouvé le Trésor à (3, 0) ! Vous avez gagné !");
