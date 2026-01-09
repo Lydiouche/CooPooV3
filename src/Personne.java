@@ -9,9 +9,10 @@ public  abstract class Personne extends Entite {
     /// Booléen à True pour montrer que le personnage est vivant
     private Boolean vie;
 
-    /// Constructeur principal du Personnage.
-    ///
-    /// @param name Le nom du personnage (ex: "Gandalf")
+    /** Constructeur principal du Personnage.
+    *
+    * @param name Le nom du personnage (ex: "Gandalf")
+    */
     public Personne(String name){
         super(name);}
 
