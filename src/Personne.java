@@ -9,6 +9,8 @@ import java.util.Scanner;
 public  abstract class Personne extends Entite {
     /** Booléen à True pour montrer que le personnage est vivant */
     private Boolean vie;
+    private int faim;
+    private String inventaire;
 
     /** Constructeur principal du Personnage.
     *
@@ -16,12 +18,24 @@ public  abstract class Personne extends Entite {
     */
     public Personne(String name){
         super(name);}
-
+/// Getter et Setter
     public Boolean getVie(){
         return(vie);
     }
     public void setVie(Boolean vie) {
         this.vie = vie;
+    }
+    public int getFaim() {
+        return faim;
+    }
+    public void setFaim(int faim) {
+        this.faim = faim;
+    }
+    public String getInventaire() {
+        return inventaire;
+    }
+    public void setInventaire(String inventaire) {
+        this.inventaire = inventaire;
     }
 
 
@@ -45,6 +59,7 @@ public  abstract class Personne extends Entite {
             scanner.next();
             }
         } while (!saisieValide);
+        scanner.close();
         int xActuel = this.getX();
         int yActuel = this.getY();
 
