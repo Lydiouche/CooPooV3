@@ -12,6 +12,10 @@ public  abstract class Personne extends Entite {
     private int faim;
     private String inventaire;
 
+    public enum Objets {
+        LaTasseDeCaféDAnnie,
+        ;
+    }
     /** Constructeur principal du Personnage.
     *
     * @param name Le nom du personnage (ex: "Gandalf")

@@ -147,6 +147,7 @@ public class VueLabyrinthe {
             joueur.attaquer();
             System.out.println("Attaque Super Efficace ! Votre classe (" + joueur.getClass().getSimpleName() + ") est la faiblesse de ce monstre.");
             System.out.println(monstre.getName() + " a été vaincu et vous gagnez la case !");
+            System.out.println("Vous trouvez derrière vous : .");
 
             plateau.removeEntite(joueur.getX(), joueur.getY());
 
