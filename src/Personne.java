@@ -7,18 +7,32 @@ import java.util.Scanner;
 /// @version 1.0
 public  abstract class Personne extends Entite {
     private Boolean vie;
+    private int faim;
+    private String inventaire;
 
 /// Constructeur principal du Personnage.
     ///
     /// @param name Le nom du personnage (ex: "Gandalf")
     public Personne(String name){
         super(name);}
-
+/// Getter et Setter
     public Boolean getVie(){
         return(vie);
     }
     public void setVie(Boolean vie) {
         this.vie = vie;
+    }
+    public int getFaim() {
+        return faim;
+    }
+    public void setFaim(int faim) {
+        this.faim = faim;
+    }
+    public String getInventaire() {
+        return inventaire;
+    }
+    public void setInventaire(String inventaire) {
+        this.inventaire = inventaire;
     }
 
 
@@ -42,6 +56,7 @@ public  abstract class Personne extends Entite {
             scanner.next();
             }
         } while (!saisieValide);
+        scanner.close();
         int xActuel = this.getX();
         int yActuel = this.getY();
 
