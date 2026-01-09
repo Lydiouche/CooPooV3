@@ -27,11 +27,10 @@ public class LabyrintheApp extends Application {
     private static final int MIN_Y = -3;
     private static final int MAX_Y = 4;
 
-    // --- MODÈLE ---
     private Plateau plateau;
     private Personne joueur;
 
-    // --- ÉLÉMENTS GRAPHIQUES ---
+
     private StackPane[][] grilleGraphique;
     private TextArea zoneTexte;
     private Label statusLabel;
@@ -43,31 +42,28 @@ public class LabyrintheApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // 1. DEMANDE DU NOM
         String nomJoueur = demanderNomUtilisateur();
         if (nomJoueur == null) {
             Platform.exit();
             return;
         }
 
-        // 2. INITIALISATION
         plateau = new Plateau();
         joueur = new Paysan(nomJoueur);
         joueur.setX(0);
         joueur.setY(0);
         joueur.setVie(true);
         
-        // Gestion de la faim (si implémentée dans ta classe Personne)
         try {
-            joueur.setFaim(100);
+            joueur.setFaim(220);
         } catch (Exception e) { /* Ignoré si pas encore codé */ }
 
-        // 3. INTERFACE GRAPHIQUE
+
         BorderPane root = new BorderPane();
         root.setPadding(new Insets(10));
         root.setStyle("-fx-background-color: #2c3e50;");
 
-        // --- GRILLE ---
+
         grille = new GridPane();
         grille.setAlignment(Pos.CENTER);
         grille.setHgap(2);
@@ -100,18 +96,17 @@ public class LabyrintheApp extends Application {
         zoneTexte = new TextArea();
         zoneTexte.setEditable(false);
         zoneTexte.setFocusTraversable(false);
-        zoneTexte.setPrefHeight(200); // J'ai agrandi la zone pour bien voir l'histoire !
+        zoneTexte.setPrefHeight(200);
         zoneTexte.setWrapText(true);
         zoneTexte.setStyle("-fx-control-inner-background: #34495e; -fx-text-fill: white; -fx-font-family: 'Consolas', monospace;");
 
-        // AFFICHE LE LORE ICI
+
         afficherIntro(nomJoueur);
 
         bottomBox.getChildren().addAll(statusLabel, zoneTexte);
         root.setBottom(bottomBox);
 
-        // 4. ÉVÉNEMENTS CLAVIER
-        Scene scene = new Scene(root, 700, 850); // Fenêtre un peu plus grande
+        Scene scene = new Scene(root, 700, 800);
         scene.setOnKeyPressed(event -> {
             if (joueur.getVie()) {
                 gererMouvement(event.getCode());
@@ -186,7 +181,6 @@ public class LabyrintheApp extends Application {
             } else {
                 afficherMessage("🔒 Raté ! L'arme reste au sol.");
             }
-            
         } else if (entite.getName().equals("Tresor")) {
             afficherMessage("💎 VICTOIRE ! Trésor trouvé !");
             joueur.setVie(false);
@@ -194,19 +188,17 @@ public class LabyrintheApp extends Application {
         }
     }
 
-    /**
-     * Adapte tes énigmes Console (Scanner) en énigmes Graphiques (Dialog)
-     */
+
     private boolean poserEnigmeGraphique(Arme a) {
         String question = "";
         List<String> choix = null;
         String bonneReponse = "";
 
-        // Tes énigmes personnalisées
+
         if (a instanceof Epee) {
             question = "Quelle épée légendaire a été reforgée pour Aragorn (Andúril) ?";
-            choix = Arrays.asList("1. Aragorn", "2. Frodo", "3. Gandalf");
-            bonneReponse = "1. Aragorn";
+            choix = Arrays.asList("1. Narsil", "2. Escalibur", "3. Durandal");
+            bonneReponse = "1. Narsil";
         } else if (a instanceof Arc) {
             question = "Quel jeu se déroule dans un monde préhistorique avec des dinosaures ?";
             choix = Arrays.asList("1. Ark : Survival Evolved", "2. Minecraft", "3. Skyrim");
@@ -220,10 +212,9 @@ public class LabyrintheApp extends Application {
             choix = Arrays.asList("1. Une baguette", "2. Une trompette", "3. Une guitare");
             bonneReponse = "1. Une baguette";
         } else {
-            return true; // Fourche ou autre sans énigme
+            return true;
         }
 
-        // Création de la boîte de dialogue
         ChoiceDialog<String> dialog = new ChoiceDialog<>(choix.get(1), choix);
         dialog.setTitle("Énigme du Gardien");
         dialog.setHeaderText("Pour prendre " + a.getNomA() + " :");
@@ -286,7 +277,6 @@ public class LabyrintheApp extends Application {
                 int row = MAX_Y - y;
                 StackPane pane = grilleGraphique[col][row];
                 pane.getChildren().clear();
-                
                 if (plateau.estPiege(x, y)) pane.setStyle("-fx-background-color: #7f8c8d; -fx-background-radius: 5;");
                 else pane.setStyle("-fx-background-color: #ecf0f1; -fx-background-radius: 5;");
 
@@ -336,7 +326,7 @@ public class LabyrintheApp extends Application {
         }
     }
 
-    // --- C'EST ICI QUE J'AI MIS LE LORE ! ---
+
     private void afficherIntro(String nom) {
         afficherMessage("====================================================");
         afficherMessage("La Légende de " + nom +" et la Tache de Café\n" +
@@ -358,6 +348,7 @@ public class LabyrintheApp extends Application {
         afficherMessage("Objectif : Atteindre le TRESOR (3, 0). Attention aux pièges et aux monstres.");
         afficherMessage("Faites attention à ne pas rester trop longtemps dans le labyrinthe !");
         afficherMessage("Vous commencez en (0, 0). Bonne chance !");
+        afficherMessage("====================================================");
     }
 
     private void afficherMessage(String msg) {
